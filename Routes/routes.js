@@ -7,5 +7,6 @@ router.post('/register' , authController.register)
 router.post('/login' , authController.login)
 router.get('/' , authController.Take)
 router.delete("/:id" , authController.Delete)
+router.post("/course" ,authController.registerCourse )
 
 export default router

@@ -1,4 +1,5 @@
 import User from "../Schema/User.model.js";
+import Course from "../Schema/Courses.models.js"
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -96,7 +97,24 @@ const Delete = async (req , res) =>{
 
 }
 
+const registerCourse = async (req , res) =>{
+
+        try {
+
+          const {coursename , branch} = req.body;
+          const NewCourse = new Course({coursename , branch})
+          await NewCourse.save();
+          res.status(200).send({message: "New course created"})
+
+        } catch (error) {
+
+
+          console.log("error during saving course" , error)
+
+
+        }
+}
 
 // export all the functions to the router section 
 
-export default {register , login , Take , Delete}
+export default {register , login , Take , Delete , registerCourse}
