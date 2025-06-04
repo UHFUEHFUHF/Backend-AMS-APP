@@ -101,8 +101,8 @@ const registerCourse = async (req , res) =>{
 
         try {
 
-          const {coursename , branch} = req.body;
-          const NewCourse = new Course({coursename , branch})
+          const {coursename , branch , coursefees} = req.body;
+          const NewCourse = new Course({coursename , branch , coursefees})
           await NewCourse.save();
           res.status(200).send({message: "New course created"})
 
@@ -115,6 +115,40 @@ const registerCourse = async (req , res) =>{
         }
 }
 
+const GetCourse = async (req , res) =>{         // Course fetch logic
+        try {
+
+
+          const  CourseData = await Course.find();
+          res.status(201).send(CourseData)
+
+
+        } catch (error) {
+          console.log("error while getting course data " , error)
+          res.status(500).send({message: "error occured"})
+        }
+}
+
+
+const HandleCourseDelete = async (req , res) =>{     // Course deletion logic
+         
+      try {
+
+        const {id} = req.params
+        await Course.findByIdAndDelete(id)
+        res.status(200).send({message: "Course deleted successfully"})
+
+      } catch (error) {
+
+        console.log("error while deleting course" , error)
+        res.status(500).send({message: "error"})
+
+      }
+
+
+
+}
+
 // export all the functions to the router section 
 
-export default {register , login , Take , Delete , registerCourse}
+export default {register , login , Take , Delete , registerCourse , HandleCourseDelete , GetCourse}

@@ -13,6 +13,10 @@ const CourseSchema = mongoose.Schema({
         required: true
     },
 
+    coursefees:{
+        type: Number,
+        required: true
+    },
 
     image:{
         type: String
@@ -22,4 +26,4 @@ const CourseSchema = mongoose.Schema({
 
 const Course = mongoose.model("Course" , CourseSchema)
 
-export default CourseSchema
+export default Course
