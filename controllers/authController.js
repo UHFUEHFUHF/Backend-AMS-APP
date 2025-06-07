@@ -20,7 +20,7 @@ const register = async (req , res) =>{
 
     await newUser.save();   // to save new user to the database 
 
-    res.status(201).send({message: "user created successfully"})
+    res.status(200).send({message: "user created successfully"})
 
     }catch(error){
 
