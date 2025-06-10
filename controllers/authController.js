@@ -42,7 +42,7 @@ const login = async (req , res) =>{
 
         const {username , password} = req.body;   // takes password and username from the frontend
 
-        const user = await User.findOne({username})  // takes all the data that has been created into the database
+        const user = await User.findOne({username})  // takes all the data that has been created into the database only username
 
         if(!user){
              return res.status(400).send({ message: "Invalid username or password" });
